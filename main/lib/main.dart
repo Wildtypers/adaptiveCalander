@@ -41,6 +41,11 @@ class _HomePageState extends State<MyHomePage>{
                 Column(
                   children: [
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                         ),
+                      ),
                       onPressed: () {},
                       child: const Text('Test')
                     ),
