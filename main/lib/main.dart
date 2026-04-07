@@ -36,8 +36,25 @@ class _HomePageState extends State<MyHomePage>{
         alignment: Alignment.centerLeft,
         child: Column(
           children: [
-            Text('Task 1'),
-            Text('Task 2'),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Test')
+                    ),
+                  ]
+                ),
+                Column(
+                  children: [
+                    Text('Task 1'),
+                  ]
+                ),
+              ]
+            ),
+            Row(),
+            Row(),
           ],
         ),
       ),
