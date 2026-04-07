@@ -33,8 +33,14 @@ class _HomePageState extends State<MyHomePage>{
     return Scaffold(
       appBar: AppBar(title: const Text('Sample Bar')),
       body: Container(
-        
-      )
+        alignment: Alignment.centerLeft,
+        child: Column(
+          children: [
+            Text('Task 1'),
+            Text('Task 2'),
+          ],
+        ),
+      ),
     );
   }
 }
