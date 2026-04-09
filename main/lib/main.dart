@@ -35,13 +35,25 @@ class _HomePageState extends State<MyHomePage>{
       body: Container(
         alignment: Alignment.centerLeft,
         child: Column(
+          spacing: 10,
           children: [
             RowItems("Task 1", "Finish Homework"),
             RowItems("Task 2", "Finish Homework"),
             RowItems("Task 3", "Finish Homework"),
+            RowItems("Task 4", "Finish Homework"),
+            RowItems("Task 5", "Finish Homework"),
+            RowItems("Task 6", "Finish Homework"),
+            RowItems("Task 7", "Finish Homework"),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){},
+        label: Text("Add"),
+        icon: const Icon(
+          Icons.add,
+        )
+      )
     );
   }
 }
