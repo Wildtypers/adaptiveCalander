@@ -56,9 +56,30 @@ class _HomePageState extends State<MyHomePage>{
                     Text('Task 1'),
                   ]
                 ),
-              ]
+              ],
             ),
-            Row(),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                         ),
+                      ),
+                      onPressed: () {},
+                      child: const Text('Test 2')
+                    ),
+                  ]
+                ),
+                Column(
+                  children: [
+                    Text('Task 2'),
+                  ]
+                ),
+              ],
+            ),
             Row(),
           ],
         ),
