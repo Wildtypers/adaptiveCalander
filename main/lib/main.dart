@@ -59,6 +59,7 @@ class _HomePageState extends State<MyHomePage>{
               ],
             ),
             Row(
+              spacing: 15,
               children: [
                 Column(
                   children: [
