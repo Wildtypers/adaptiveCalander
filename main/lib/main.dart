@@ -36,60 +36,56 @@ class _HomePageState extends State<MyHomePage>{
         alignment: Alignment.centerLeft,
         child: Column(
           children: [
-            Row(
-              children: [
-                Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                         ),
-                      ),
-                      onPressed: () {},
-                      child: const Text('Test')
-                    ),
-                  ]
-                ),
-                Column(
-                  children: [
-                    Text('Task 1'),
-                  ]
-                ),
-              ],
-            ),
-            Row(
-              spacing: 15,
-              children: [
-                Column(
-                  children: [
-                    SizedBox(
-                      width: 90,
-                      height: 40,
-                      child: 
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: const Text('Test 2')
-                      ),
-                    )
-                  ]
-                ),
-                Column(
-                  children: [
-                    Text('Task 2'),
-                  ]
-                ),
-              ],
-            ),
-            Row(),
+            RowItems("Task 1", "Finish Homework"),
+            RowItems("Task 2", "Finish Homework"),
+            RowItems("Task 3", "Finish Homework"),
           ],
         ),
       ),
+    );
+  }
+}
+
+class RowItems extends StatelessWidget{
+  final String buttonText;
+  final String taskText;
+
+  const RowItems(
+    this.buttonText,
+    this.taskText,
+    {super.key}
+  );
+
+
+  @override
+  Widget build(BuildContext context){ 
+    return Row(
+      spacing: 15,
+      children: [
+        Column(
+          children: [
+            SizedBox(
+              width: 90,
+              height: 40,
+              child: 
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                onPressed: () {},
+                child: Text(buttonText)
+              ),
+            )
+          ]
+        ),
+        Column(
+          children: [
+            Text(taskText),
+          ]
+        ),
+      ]
     );
   }
 }
