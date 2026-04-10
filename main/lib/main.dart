@@ -48,12 +48,25 @@ class _HomePageState extends State<MyHomePage>{
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){},
+        onPressed: (){
+          dialogBuilder(context);
+        },
         label: Text("Add"),
         icon: const Icon(
           Icons.add,
         )
       )
+    );
+  }
+
+  Future<void> dialogBuilder(BuildContext context){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text("Enter a Task")
+        );
+      }
     );
   }
 }
