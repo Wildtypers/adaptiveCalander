@@ -60,11 +60,18 @@ class _HomePageState extends State<MyHomePage>{
   }
 
   Future<void> dialogBuilder(BuildContext context){
+    final TextEditingController controller = TextEditingController();
     return showDialog(
       context: context,
       builder: (BuildContext context){
         return AlertDialog(
-          title: Text("Enter a Task")
+          title: Text("Enter a Task"),
+          content: TextField(
+            controller: controller,
+            keyboardType: TextInputType.text,
+            autofocus: true,
+
+          )
         );
       }
     );
