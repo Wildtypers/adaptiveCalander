@@ -69,9 +69,16 @@ class _HomePageState extends State<MyHomePage>{
           content: TextField(
             controller: controller,
             keyboardType: TextInputType.text,
-            autofocus: true,
-
-          )
+            decoration: InputDecoration(
+              hintText:'Enter'
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: (){},
+            child: Text("Add")
+            )
+          ]
         );
       }
     );
