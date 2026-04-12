@@ -75,7 +75,16 @@ class _HomePageState extends State<MyHomePage>{
           ),
           actions: [
             TextButton(
-              onPressed: (){},
+              onPressed: ()
+              {
+                return Navigator.pop(context);
+              },
+            child: Text("Cancel")
+            ),
+            TextButton(
+              onPressed: (){
+                return Navigator.pop(context);
+              },
             child: Text("Add")
             )
           ]
