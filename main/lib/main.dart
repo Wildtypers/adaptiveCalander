@@ -48,8 +48,11 @@ class _HomePageState extends State<MyHomePage>{
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){
-          dialogBuilder(context);
+        onPressed: () async {
+          final result = await dialogBuilder(context);
+          if (result != null && result.isNotEmpty) {
+            RowItems("Task 1", result);
+          }
         },
         label: Text("Add"),
         icon: const Icon(
@@ -59,7 +62,7 @@ class _HomePageState extends State<MyHomePage>{
     );
   }
 
-  Future<void> dialogBuilder(BuildContext context){
+  Future<String?> dialogBuilder(BuildContext context){
     final TextEditingController controller = TextEditingController();
     return showDialog(
       context: context,
@@ -83,7 +86,7 @@ class _HomePageState extends State<MyHomePage>{
             ),
             TextButton(
               onPressed: (){
-                return Navigator.pop(context);
+                return Navigator.pop(context, controller.text);
               },
             child: Text("Add")
             )
