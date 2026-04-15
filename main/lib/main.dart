@@ -28,30 +28,26 @@ class MyHomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<MyHomePage>{
+  final display = <Widget>[];
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(title: const Text('Sample Bar')),
+      appBar: AppBar(title: const Text('Task List')),
       body: Container(
         alignment: Alignment.centerLeft,
         child: Column(
           spacing: 10,
-          children: [
-            RowItems("Task 1", "Finish Homework"),
-            RowItems("Task 2", "Finish Homework"),
-            RowItems("Task 3", "Finish Homework"),
-            RowItems("Task 4", "Finish Homework"),
-            RowItems("Task 5", "Finish Homework"),
-            RowItems("Task 6", "Finish Homework"),
-            RowItems("Task 7", "Finish Homework"),
-          ],
+          children: display
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           final result = await dialogBuilder(context);
           if (result != null && result.isNotEmpty) {
-            RowItems("Task 1", result);
+            final taskNumber = display.length + 1;
+            setState(() {
+              display.add(RowItems("Task $taskNumber", result));
+            });
           }
         },
         label: Text("Add"),
