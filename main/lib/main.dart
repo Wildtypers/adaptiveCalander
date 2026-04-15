@@ -69,7 +69,7 @@ class _HomePageState extends State<MyHomePage>{
             controller: controller,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
-              hintText:'Enter: '
+              hintText:'Example task'
             ),
           ),
           actions: [
