@@ -2,7 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final database = openDatabase(
+    join(await getDatabasesPath(), 'tasks.db'),
+    onCreate: (db, version){
+      return db.execute(
+        'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT',
+      );
+    },
+    version: 1,
+  );
+
   runApp(const MyApp());
 }
 
@@ -26,7 +38,6 @@ class MyHomePage extends StatefulWidget{
   const MyHomePage({super.key}); //creating a super key for unique identification on tree
 
   @override
-  WidgetsFlutterBinding.ensureInitialized();
   State<MyHomePage> createState() => _HomePageState(); //creating state
 }
 
