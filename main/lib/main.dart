@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -24,6 +26,7 @@ class MyHomePage extends StatefulWidget{
   const MyHomePage({super.key}); //creating a super key for unique identification on tree
 
   @override
+  WidgetsFlutterBinding.ensureInitialized();
   State<MyHomePage> createState() => _HomePageState(); //creating state
 }
 
@@ -92,6 +95,8 @@ class _HomePageState extends State<MyHomePage>{
     );
   }
 }
+
+
 
 class RowItems extends StatelessWidget{
   final String buttonText;
