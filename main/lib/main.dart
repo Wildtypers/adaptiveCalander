@@ -9,7 +9,7 @@ void main() async{
     join(await getDatabasesPath(), 'tasks.db'),
     onCreate: (db, version){
       return db.execute(
-        'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT',
+        'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT, task2 TEXT',
       );
     },
     version: 1,
