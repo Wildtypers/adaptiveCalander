@@ -34,7 +34,6 @@ class MyHomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<MyHomePage>{
-  final display = <Widget>[];
   var table = <Tasks>[];
 
   @override
@@ -44,15 +43,13 @@ class _HomePageState extends State<MyHomePage>{
   }
 
   Future<void> loadTasks() async{
-    table = await Tasks.tasks();
+    final data = await Tasks.tasks();
     setState((){
-      for (var (index, item) in table.indexed){
-        display.add(RowItems(
-        "Task ${index + 1}", item.task
-        ));
+      table = data;
       }
-    });
+    );
   }
+
         
 
   @override
@@ -63,19 +60,28 @@ class _HomePageState extends State<MyHomePage>{
         alignment: Alignment.centerLeft,
         child: Column(
           spacing: 10,
-          children: display
+          children: table.asMap().entries.map((entry) {
+            final index = entry.key;
+            final item = entry.value;
+
+            return RowItems(
+              buttonText: "Task ${index + 1}",
+              taskText: item.task,
+              onDelete:() async {
+              },
+            );
+          }).toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           final result = await dialogBuilder(context);
           if (result != null && result.isNotEmpty) {
-            final taskNumber = display.length + 1;
             var insert = Tasks(task: result);
             await Tasks.insertTask(insert);
 
             setState(() {
-              display.add(RowItems("Task $taskNumber", result));
+              table.add(insert);
             });
           }
         },
@@ -172,6 +178,16 @@ class Tasks {
     ];
   }
 
+  static Future<void> deleteTask(int id) async{
+    final db = await DatabaseService.database;
+
+    await db.delete(
+      'tasks',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
   
 }
 
@@ -179,12 +195,14 @@ class Tasks {
 class RowItems extends StatelessWidget{
   final String buttonText;
   final String taskText;
+  final VoidCallback onDelete;
 
-  const RowItems(
-    this.buttonText,
-    this.taskText,
-    {super.key}
-  );
+  const RowItems({
+    required this.buttonText,
+    required this.taskText,
+    required this.onDelete,
+    super.key
+});
 
 
   @override
@@ -204,7 +222,7 @@ class RowItems extends StatelessWidget{
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: onDelete,
                 child: Text(buttonText)
               ),
             )
