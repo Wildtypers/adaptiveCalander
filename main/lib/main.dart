@@ -5,15 +5,7 @@ import 'package:path/path.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
-  final database = openDatabase(
-    join(await getDatabasesPath(), 'tasks.db'),
-    onCreate: (db, version){
-      return db.execute(
-        'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT, task2 TEXT',
-      );
-    },
-    version: 1,
-  );
+  DatabaseService.database;
 
   runApp(const MyApp());
 }
@@ -137,10 +129,28 @@ class Tasks {
     return {'id': id, 'task' : task};
   }
 
-  Future<void> insertTask(String task) async{
+  Future<void> insertTask(Tasks task) async{
     final db = await DatabaseService.database;
     
+    await db.insert(
+      'tasks',
+      task.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace
+    );
   }
+
+  Future<List<Tasks>> tasks() async{
+    final db = await DatabaseService.database;
+
+    final List<Map<String, Object?>> taskMaps = await db.query('tasks');
+
+    return [
+      for (final {'id' : id as int, 'task' : task as String} in taskMaps)
+        Tasks(id: id, task: task),
+    ];
+  }
+
+  
 }
 
 
