@@ -5,7 +5,15 @@ import 'package:path/path.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
-  final db = await DatabaseService.database;
+  final database = openDatabase(
+    join(await getDatabasesPath(), 'tasks.db'),
+    onCreate: (db, version){
+      return db.execute(
+        'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT, task2 TEXT',
+      );
+    },
+    version: 1,
+  );
 
   runApp(const MyApp());
 }
