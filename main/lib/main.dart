@@ -35,6 +35,26 @@ class MyHomePage extends StatefulWidget{
 
 class _HomePageState extends State<MyHomePage>{
   final display = <Widget>[];
+  var table = <Tasks>[];
+
+  @override
+  void initState() {
+    super.initState();
+    loadTasks();
+  }
+
+  Future<void> loadTasks() async{
+    table = await Tasks.tasks();
+    setState((){
+      for (var (index, item) in table.indexed){
+        display.add(RowItems(
+        "Task ${index + 1}", item.task
+        ));
+      }
+    });
+  }
+        
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -51,6 +71,9 @@ class _HomePageState extends State<MyHomePage>{
           final result = await dialogBuilder(context);
           if (result != null && result.isNotEmpty) {
             final taskNumber = display.length + 1;
+            var insert = Tasks(task: result);
+            await Tasks.insertTask(insert);
+
             setState(() {
               display.add(RowItems("Task $taskNumber", result));
             });
@@ -120,16 +143,15 @@ class DatabaseService {
 }
 
 class Tasks {
-  final int id;
   final String task;
 
-  Tasks({required this.id, required this.task});
+  Tasks({required this.task});
 
   Map<String, Object?> toMap() {
-    return {'id': id, 'task' : task};
+    return {'task' : task};
   }
 
-  Future<void> insertTask(Tasks task) async{
+  static Future<void> insertTask(Tasks task) async{
     final db = await DatabaseService.database;
     
     await db.insert(
@@ -139,14 +161,14 @@ class Tasks {
     );
   }
 
-  Future<List<Tasks>> tasks() async{
+  static Future<List<Tasks>> tasks() async{
     final db = await DatabaseService.database;
 
     final List<Map<String, Object?>> taskMaps = await db.query('tasks');
 
     return [
-      for (final {'id' : id as int, 'task' : task as String} in taskMaps)
-        Tasks(id: id, task: task),
+      for (final {'task' : task as String} in taskMaps)
+        Tasks(task: task),
     ];
   }
 
