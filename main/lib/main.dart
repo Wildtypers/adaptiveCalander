@@ -5,15 +5,7 @@ import 'package:path/path.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
-  final database = openDatabase(
-    join(await getDatabasesPath(), 'tasks.db'),
-    onCreate: (db, version){
-      return db.execute(
-        'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT',
-      );
-    },
-    version: 1,
-  );
+  final db = await DatabaseService.database;
 
   runApp(const MyApp());
 }
@@ -107,6 +99,41 @@ class _HomePageState extends State<MyHomePage>{
   }
 }
 
+class DatabaseService {
+  static Database? db;
+
+  static Future<Database> get database async{
+    if (db != null) return db!;
+
+    db = await openDatabase(
+    join(await getDatabasesPath(), 'tasks.db'),
+    onCreate: (db, version){
+      return db.execute(
+        'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT)',
+      );
+    },
+    version: 1,
+  );
+
+  return db!;
+  }
+}
+
+class Tasks {
+  final int id;
+  final String task;
+
+  Tasks({required this.id, required this.task});
+
+  Map<String, Object?> toMap() {
+    return {'id': id, 'task' : task};
+  }
+
+  Future<void> insertTask(String task) async{
+    final db = await DatabaseService.database;
+    
+  }
+}
 
 
 class RowItems extends StatelessWidget{
