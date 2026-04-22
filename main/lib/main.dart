@@ -68,6 +68,11 @@ class _HomePageState extends State<MyHomePage>{
               buttonText: "Task ${index + 1}",
               taskText: item.task,
               onDelete:() async {
+                await Tasks.deleteTask(item.id!); //needs fixing here
+                final updatedData = await Tasks.tasks();
+                setState((){
+                  table = updatedData;
+                });
               },
             );
           }).toList(),
@@ -79,9 +84,9 @@ class _HomePageState extends State<MyHomePage>{
           if (result != null && result.isNotEmpty) {
             var insert = Tasks(task: result);
             await Tasks.insertTask(insert);
-
+            final updatedData = await Tasks.tasks();
             setState(() {
-              table.add(insert);
+              table = updatedData;
             });
           }
         },
@@ -150,8 +155,9 @@ class DatabaseService {
 
 class Tasks {
   final String task;
+  final int? id;
 
-  Tasks({required this.task});
+  Tasks({this.id, required this.task});
 
   Map<String, Object?> toMap() {
     return {'task' : task};
@@ -173,8 +179,11 @@ class Tasks {
     final List<Map<String, Object?>> taskMaps = await db.query('tasks');
 
     return [
-      for (final {'task' : task as String} in taskMaps)
-        Tasks(task: task),
+      for (final map in taskMaps)
+        Tasks(
+          id: map['id'] as int,
+          task: map['task'] as String,
+        )
     ];
   }
 
