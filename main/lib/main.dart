@@ -134,7 +134,7 @@ class _HomePageState extends State<MyHomePage>{
             ),
             TextButton(
               onPressed: (){
-                Navigator.pop(
+                return Navigator.pop(
                     context, Tasks(
                       task: taskcontroller.text,
                       date: dateController.text
