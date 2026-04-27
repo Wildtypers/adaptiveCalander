@@ -68,7 +68,7 @@ class _HomePageState extends State<MyHomePage>{
               buttonText: "Task ${index + 1}",
               taskText: item.task,
               onDelete:() async {
-                await Tasks.deleteTask(item.id!); //needs fixing here
+                await Tasks.deleteTask(item.id!);
                 final updatedData = await Tasks.tasks();
                 setState((){
                   table = updatedData;
@@ -98,20 +98,32 @@ class _HomePageState extends State<MyHomePage>{
     );
   }
 
-  Future<String?> dialogBuilder(BuildContext context){
-    final TextEditingController controller = TextEditingController();
-    return showDialog(
+  Future<Tasks?> dialogBuilder(BuildContext context){
+    final taskcontroller = TextEditingController();
+    final dateController = TextEditingController();
+    return showDialog<Tasks>(
       context: context,
       builder: (BuildContext context){
         return AlertDialog(
           title: Text("Enter a Task"),
-          content: TextField(
-            controller: controller,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              hintText:'Example task'
+          content: Column(
+            children: [
+              TextField(
+                controller: taskcontroller,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  hintText:'Example task',
+                )
+              ),
+              TextField(
+                controller: dateController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  hintText:'Example task'
+                )
+              )
+            ],
             ),
-          ),
           actions: [
             TextButton(
               onPressed: ()
@@ -122,7 +134,12 @@ class _HomePageState extends State<MyHomePage>{
             ),
             TextButton(
               onPressed: (){
-                return Navigator.pop(context, controller.text);
+                Navigator.pop(
+                    context, Tasks(
+                      task: taskcontroller.text,
+                      date: dateController.text
+                    )
+                  );
               },
             child: Text("Add")
             )
@@ -155,9 +172,10 @@ class DatabaseService {
 
 class Tasks {
   final String task;
+  final String date;
   final int? id;
 
-  Tasks({this.id, required this.task});
+  Tasks({this.id, required this.date, required this.task});
 
   Map<String, Object?> toMap() {
     return {'task' : task};
@@ -182,6 +200,7 @@ class Tasks {
       for (final map in taskMaps)
         Tasks(
           id: map['id'] as int,
+          date: map['date'] as String, 
           task: map['task'] as String,
         )
     ];
