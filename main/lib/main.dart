@@ -81,8 +81,8 @@ class _HomePageState extends State<MyHomePage>{
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           final result = await dialogBuilder(context);
-          if (result != null && result.isNotEmpty) {
-            var insert = Tasks(task: result);
+          if (result != null) {
+            var insert = result;
             await Tasks.insertTask(insert);
             final updatedData = await Tasks.tasks();
             setState(() {
@@ -119,7 +119,7 @@ class _HomePageState extends State<MyHomePage>{
                 controller: dateController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                  hintText:'Example task'
+                  hintText:'Ex: 3/15/2026'
                 )
               )
             ],
@@ -178,7 +178,7 @@ class Tasks {
   Tasks({this.id, required this.date, required this.task});
 
   Map<String, Object?> toMap() {
-    return {'task' : task};
+    return {'task' : task, 'date' : date};
   }
 
   static Future<void> insertTask(Tasks task) async{
