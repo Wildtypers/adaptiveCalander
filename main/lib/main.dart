@@ -43,9 +43,9 @@ class _HomePageState extends State<MyHomePage>{
   }
 
   Future<void> loadTasks() async{
-    final data = await Tasks.tasks();
+    final task = await Tasks.tasks();
     setState((){
-      table = data;
+      table = task;
       }
     );
   }
@@ -66,7 +66,7 @@ class _HomePageState extends State<MyHomePage>{
 
             return RowItems(
               buttonText: "Task ${index + 1}",
-              taskText: item.task,
+              taskText: "${item.date}: ${item.task}",
               onDelete:() async {
                 await Tasks.deleteTask(item.id!);
                 final updatedData = await Tasks.tasks();
