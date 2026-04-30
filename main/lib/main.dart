@@ -194,7 +194,10 @@ class Tasks {
   static Future<List<Tasks>> tasks() async{
     final db = await DatabaseService.database;
 
-    final List<Map<String, Object?>> taskMaps = await db.query('tasks');
+    final List<Map<String, Object?>> taskMaps = await db.query(
+      'tasks',
+      orderBy: 'SUBSTR(date, 7, 4) ASC, SUBSTR(date, 1, 2) ASC, SUBSTR(date, 4, 2) ASC',
+      );
 
     return [
       for (final map in taskMaps)
