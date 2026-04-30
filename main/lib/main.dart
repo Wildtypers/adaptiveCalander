@@ -119,7 +119,7 @@ class _HomePageState extends State<MyHomePage>{
                 controller: dateController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                  hintText:'Ex: 3/15/2026'
+                  hintText:'Ex: 03/15/2026'
                 )
               )
             ],
