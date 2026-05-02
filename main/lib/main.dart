@@ -61,12 +61,11 @@ class _HomePageState extends State<MyHomePage>{
         child: Column(
           spacing: 10,
           children: table.asMap().entries.map((entry) {
-            final index = entry.key;
             final item = entry.value;
 
             return RowItems(
-              buttonText: "Task ${index + 1}",
-              taskText: "${item.date}: ${item.task}",
+              buttonText: item.date,
+              taskText: item.task,
               onDelete:() async {
                 await Tasks.deleteTask(item.id!);
                 final updatedData = await Tasks.tasks();
