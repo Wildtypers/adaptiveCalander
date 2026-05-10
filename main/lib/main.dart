@@ -254,7 +254,7 @@ class RowItems extends StatelessWidget{
         Column(
           children: [
             SizedBox(
-              width: 90,
+              width: 120,
               height: 40,
               child: 
                 ElevatedButton(
