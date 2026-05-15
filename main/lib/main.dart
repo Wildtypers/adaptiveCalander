@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'secondPage.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,22 +78,38 @@ class _HomePageState extends State<MyHomePage>{
           }).toList(),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          final result = await dialogBuilder(context);
-          if (result != null) {
-            var insert = result;
-            await Tasks.insertTask(insert);
-            final updatedData = await Tasks.tasks();
-            setState(() {
-              table = updatedData;
-            });
-          }
-        },
-        label: Text("Add"),
-        icon: const Icon(
-          Icons.add,
-        )
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          FloatingActionButton(
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => const SecondPage(),
+                )
+              );
+            },
+            child: const Icon(Icons.menu),
+            ),
+          FloatingActionButton.extended(
+            onPressed: () async {
+              final result = await dialogBuilder(context);
+              if (result != null) {
+                var insert = result;
+                await Tasks.insertTask(insert);
+                final updatedData = await Tasks.tasks();
+                setState(() {
+                  table = updatedData;
+                });
+              }
+            },
+            label: Text("Add"),
+            icon: const Icon(
+              Icons.add,
+            )
+          )
+        ]
       )
     );
   }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class secondPage extends StatelessWidget{
-  const secondPage({super.key});
+class SecondPage extends StatelessWidget{
+  const SecondPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class secondPage extends StatelessWidget{
         child: ElevatedButton(
           child: const Text('Open route'),
           onPressed: () {
-            // Navigate to second route when tapped.
+            Navigator.pop(context);// Navigate to second route when tapped.
           },
         ),
       ),
