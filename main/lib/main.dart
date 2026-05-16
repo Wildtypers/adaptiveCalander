@@ -82,6 +82,7 @@ class _HomePageState extends State<MyHomePage>{
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           FloatingActionButton(
+            heroTag: "navigation",
             onPressed: (){
               Navigator.push(
                 context,
@@ -93,6 +94,7 @@ class _HomePageState extends State<MyHomePage>{
             child: const Icon(Icons.menu),
             ),
           FloatingActionButton.extended(
+            heroTag: "action",
             onPressed: () async {
               final result = await dialogBuilder(context);
               if (result != null) {
