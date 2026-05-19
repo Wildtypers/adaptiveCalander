@@ -126,6 +126,7 @@ class _HomePageState extends State<MyHomePage>{
         return AlertDialog(
           title: Text("Enter a Task"),
           content: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: taskcontroller,
