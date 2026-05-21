@@ -10,12 +10,21 @@ class SecondPage extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(title: const Text('First Route')),
       body: Center(
-        child: ElevatedButton(
-          child: const Text('Open route'),
-          onPressed: () {
-            Navigator.pop(context);// Navigate to second route when tapped.
-          },
-        ),
+        child: Column(
+          children: [
+            ElevatedButton(
+              child: const Text('Back Route'),
+              onPressed: () {
+                Navigator.pop(context);// Navigate to second route when tapped.
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Front Route'),
+              onPressed: (){
+              }
+            )
+          ]
+        )
       ),
     );
   }
