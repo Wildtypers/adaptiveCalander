@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'calanderPage.dart';
 
-class SecondPage extends StatelessWidget{
-  const SecondPage({super.key});
+
+class calendarPage extends StatelessWidget{
+  const calendarPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('First Route')),
+      appBar: AppBar(title: const Text('Calander Page')),
       body: Center(
         child: Column(
           children: [
@@ -19,17 +19,6 @@ class SecondPage extends StatelessWidget{
                  Navigator.pop(context);// Navigate to second route when tapped.
               },
             ),
-            ElevatedButton(
-              child: const Text('Front Route'),
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (context) => const calendarPage(),
-                    )
-                  );
-              }
-            )
           ]
         )
       ),
