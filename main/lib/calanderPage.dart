@@ -5,7 +5,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 List<String> task = ["Homework1", "Homework2"];
 
-class calendarPage extends StatelessWidget{
+class calendarPage extends StatefulWidget{
   const calendarPage({super.key});
 
   @override
@@ -29,7 +29,10 @@ class calendarPage extends StatelessWidget{
                 return task;
               },
               onDaySelected: (selectedDay, focusDay){
-                
+                setState((){
+                  selectedDay = selectedDay;
+                  focusDay = focusDay;
+                });
               },
             )
           ]
