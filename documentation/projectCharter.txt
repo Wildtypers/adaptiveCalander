@@ -1,0 +1,282 @@
+Project Charter: Predictive Planner
+1. Project Overview
+Project Name
+Predictive Planner
+Project Type
+Predictive Planner is a portfolio-quality software engineering project combining personal productivity, artificial intelligence, and adaptive scheduling. The project aims to develop a personalized calendar application that learns from user behavior to improve task duration predictions and scheduling accuracy.
+The project serves multiple purposes:
+A portfolio project demonstrating mobile software engineering skills.
+A personal productivity tool designed to improve planning accuracy.
+A foundation for a potential startup product.
+An AI/ML research project exploring personalized prediction models.
+
+2. Project Purpose and Problem Statement
+Purpose
+Predictive Planner addresses the problem that traditional calendar and productivity applications rely on manually estimated task durations and do not adapt based on actual user behavior.
+Many individuals underestimate or overestimate how long tasks will take, resulting in:
+Poor scheduling decisions
+Missed deadlines
+Overloaded schedules
+Inefficient time management
+Current calendar applications function primarily as static planning tools. They allow users to create events and assign durations but do not learn whether those estimates are accurate or improve future predictions.
+Predictive Planner introduces an adaptive scheduling system that analyzes historical user behavior to create more realistic task duration predictions.
+
+3. Project Vision
+The long-term vision of Predictive Planner is to create a personalized AI scheduling assistant that understands individual user behavior and automatically generates realistic schedules.
+The application will evolve from a simple task tracker into an intelligent productivity platform capable of:
+Learning individual work patterns
+Predicting task completion times
+Understanding differences between task categories
+Automatically adjusting schedules
+Providing personalized productivity insights
+
+4. Target Users
+Primary Target Users
+College Students
+Students are the initial target audience because they frequently experience:
+Multiple overlapping assignments
+Difficulty estimating project complexity
+Deadline pressure
+Inefficient study scheduling
+Examples:
+Estimating a programming project will take 3 hours when it requires 8 hours.
+Underestimating exam preparation time.
+Overloading a daily schedule.
+Secondary Users
+Software engineers
+Professionals
+Entrepreneurs
+Individuals seeking improved time management
+
+5. Stakeholders
+Stakeholder
+Role
+Users
+Use the application, provide task completion data, and generate behavioral data used for predictions.
+Developer
+Designs, develops, tests, and maintains the application architecture and features.
+Future Investors
+Evaluate product potential, market opportunity, and scalability.
+Researchers
+Analyze productivity patterns and evaluate prediction algorithms.
+
+
+6. Project Goals
+Technical Goals
+Build a scalable Flutter mobile application using modern software engineering practices.
+Implement persistent data storage for tasks, completion records, and user behavior.
+Develop personalized prediction algorithms that improve estimated task durations using historical data.
+Create a maintainable architecture capable of supporting future backend and machine learning expansion.
+
+Product Goals
+Allow users to create tasks and estimate required completion time.
+Track actual completion time through user interaction.
+Compare estimated versus actual completion times.
+Improve future task duration predictions based on user history.
+Provide users with insights into their planning accuracy.
+
+7. Project Scope
+MVP Features
+The MVP will include the core functionality required to validate the adaptive scheduling concept.
+Task Management
+Users can:
+Create tasks
+Assign estimated durations
+Categorize tasks
+Schedule tasks
+Time Tracking
+The system will:
+Track task start time
+Track task completion time
+Calculate actual duration
+Adaptive Analysis
+The system will:
+Compare estimated versus actual completion times
+Identify user estimation patterns
+Generate improved duration predictions
+Prediction System
+The MVP will include:
+Statistical prediction models
+Basic machine learning models
+Category-based prediction improvements
+Examples:
+Linear regression
+Average completion multiplier
+Category-specific prediction models
+
+Features Excluded from MVP
+The following features will be considered future improvements:
+Feature
+Reason Excluded
+AI chatbot assistant
+Requires additional natural language processing infrastructure.
+Google Calendar integration
+Requires external API integration and authentication.
+Team collaboration
+Requires complex permission and synchronization systems.
+Advanced ML models
+Requires significant user data collection.
+Fully automatic scheduling
+Requires complex optimization algorithms and user preference modeling.
+
+
+8. Functional Requirements
+ID
+Requirement
+FR-01
+Users shall be able to create tasks with estimated completion durations.
+FR-02
+Users shall be able to schedule tasks within a calendar interface.
+FR-03
+The system shall record actual task completion times.
+FR-04
+The system shall compare estimated and actual completion durations.
+FR-05
+The system shall generate personalized task duration predictions.
+FR-06
+The system shall improve predictions using historical user data.
+FR-07
+The system shall provide productivity analytics based on user behavior.
+
+
+9. Non-Functional Requirements
+Priority ranking:
+Priority
+Requirement
+Description
+1
+Maintainability
+Codebase should support future features and architecture changes.
+2
+User Experience
+Application should provide an intuitive and efficient workflow.
+3
+Scalability
+Architecture should support future users and cloud deployment.
+4
+Performance
+Application should load quickly and operate smoothly.
+5
+Security
+User data should be stored and handled securely.
+6
+Offline Capability
+Core functionality should work without internet access during MVP.
+
+
+10. Technology Stack
+Frontend
+Flutter + Dart
+Reason:
+Cross-platform mobile development
+Strong UI framework
+Industry relevance
+Good fit for portfolio projects
+
+State Management
+Riverpod
+Reason:
+Predictive Planner contains multiple interacting states:
+Active timers
+Task lists
+Database updates
+Prediction results
+User analytics
+Riverpod provides:
+Better scalability than setState
+Cleaner dependency management
+Easier testing
+Separation between UI and logic
+
+Local Database
+SQLite + Drift
+Reason:
+Structured relational data
+Offline support
+Easy migration path
+Strong fit for task history data
+
+Future Backend
+Supabase + PostgreSQL
+Purpose:
+User accounts
+Cloud synchronization
+Large-scale analytics
+Centralized ML data
+
+Machine Learning
+Initial:
+Statistical models
+Linear regression
+Category-based prediction
+Future:
+Advanced regression models
+Neural networks
+Personalized scheduling models
+
+11. Expected Outcomes
+MVP Outcome
+A functional mobile application that tracks user task estimates and completion times while generating personalized duration predictions.
+
+Technical Outcome
+A scalable Flutter application demonstrating:
+Modern mobile development
+Clean architecture
+Database design
+State management
+Prediction algorithms
+
+Portfolio Outcome
+A production-quality software engineering project demonstrating:
+Full-stack development principles
+Mobile application engineering
+AI/ML integration
+Data-driven product development
+
+12. Success Metrics
+User Metrics
+Number of completed tasks tracked
+Number of prediction cycles completed
+Improvement in prediction accuracy over time
+User retention and continued usage
+Technical Metrics
+Completion of MVP features
+Code quality and architecture consistency
+Automated test coverage
+Application stability
+Successful deployment
+
+13. Constraints
+The project has the following constraints:
+Developed by a solo developer.
+Limited budget and resources.
+Developer is learning Flutter while building the application.
+Development time is limited.
+Initial version must prioritize simplicity and maintainability.
+
+14. Project Timeline
+MVP Development Timeline
+July 13, 2026 – November 15, 2026
+Major milestones:
+Milestone
+Date
+Project Planning Complete
+August 3, 2026
+Flutter Foundation Complete
+August 17, 2026
+Task Management Complete
+September 3, 2026
+Database Integration Complete
+September 12, 2026
+Calendar Functionality Complete
+September 20, 2026
+Time Tracking Complete
+October 2, 2026
+Prediction System Complete
+October 25, 2026
+Testing Complete
+November 3, 2026
+MVP Release
+November 15, 2026
+
+

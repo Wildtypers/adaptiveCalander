@@ -1,0 +1,289 @@
+Software Requirements Specification (SRS)
+Predictive Planner
+Version: 1.0
+ Application Type: Mobile Application
+ Framework: Flutter
+ Primary Platforms: iOS and Android
+
+1. Introduction
+1.1 Document Purpose
+This document defines the functional and non-functional requirements for the Predictive Planner application. It specifies system behavior, user interactions, data requirements, and technical requirements necessary for implementation.
+
+2. System Description
+Predictive Planner is a mobile application that allows users to create scheduled tasks, record task completion times, analyze historical completion data, and generate personalized duration predictions.
+The system operates through the following workflow:
+Create Task
+
+↓
+
+Estimate Duration
+
+↓
+
+Schedule Task
+
+↓
+
+Track Completion Time
+
+↓
+
+Analyze Historical Data
+
+↓
+
+Generate Prediction
+
+3. User Roles
+3.1 Application User
+The application user can:
+Create and manage tasks
+Schedule activities
+Track task completion
+View productivity analytics
+Receive duration predictions
+
+3.2 System Administrator (Future)
+A future administrative role may manage:
+User accounts
+System analytics
+Machine learning models
+Application configuration
+This role is not included in the MVP.
+
+4. Functional Requirements
+4.1 Task Management
+FR-001: Task Creation
+The system shall allow users to create tasks containing required scheduling information.
+Acceptance Criteria:
+Users can enter a task title.
+Users can enter an estimated duration.
+Users can assign a category.
+Users can save tasks successfully.
+
+FR-002: Task Viewing
+The system shall display user-created tasks.
+Acceptance Criteria:
+Tasks are displayed in an organized list or calendar format.
+Task details are accessible.
+Completed tasks are distinguishable from incomplete tasks.
+
+FR-003: Task Editing
+The system shall allow users to modify existing tasks.
+Acceptance Criteria:
+Users can update task information.
+Changes are saved successfully.
+Updated information appears throughout the application.
+
+FR-004: Task Deletion
+The system shall allow users to remove tasks.
+Acceptance Criteria:
+Deleted tasks no longer appear in active task lists.
+Deleted data does not affect future predictions.
+
+5. Calendar Requirements
+FR-005: Task Scheduling
+The system shall allow users to assign tasks to specific dates and times.
+Acceptance Criteria:
+Tasks can be scheduled.
+Scheduled tasks appear at the correct time.
+Task duration determines calendar block size.
+
+FR-006: Calendar Display
+The system shall provide a visual calendar interface.
+Acceptance Criteria:
+Users can view scheduled tasks.
+Tasks display correct start times.
+Users can identify available and occupied time periods.
+
+6. Time Tracking Requirements
+FR-007: Task Timer
+The system shall allow users to track actual time spent completing tasks.
+Acceptance Criteria:
+Users can start a timer.
+Users can stop a timer.
+The system records elapsed time accurately.
+
+FR-008: Completion Recording
+The system shall store completed task information.
+Acceptance Criteria:
+Completed tasks contain:
+Estimated duration
+Actual duration
+Start time
+Completion time
+
+7. Prediction System Requirements
+FR-009: Duration Comparison
+The system shall compare estimated completion times with actual completion times.
+Acceptance Criteria:
+The difference between estimated and actual duration is calculated.
+Historical accuracy information is stored.
+
+FR-010: Prediction Generation
+The system shall generate predicted task durations using historical completion data.
+Acceptance Criteria:
+Predictions are generated from previous user data.
+Predictions update after completed tasks.
+Predictions can be displayed during task creation.
+
+FR-011: Adaptive Learning
+The system shall improve predictions as additional completion data becomes available.
+Acceptance Criteria:
+Completed tasks influence future predictions.
+Prediction accuracy can be measured over time.
+
+8. Analytics Requirements
+FR-012: Productivity Analytics
+The system shall provide users with insights into their scheduling accuracy.
+Acceptance Criteria:
+Users can view:
+Average estimation error
+Estimated versus actual completion time
+Category-based performance
+
+9. Data Requirements
+9.1 Task Data
+The system shall store:
+Field
+Description
+Task ID
+Unique identifier
+Title
+Task name
+Category
+Task classification
+Estimated Duration
+User predicted completion time
+Scheduled Start
+Planned start time
+Scheduled End
+Planned completion time
+Status
+Current task state
+
+
+9.2 Completion Data
+The system shall store:
+Field
+Description
+Completion ID
+Unique identifier
+Task ID
+Related task
+Start Time
+Actual beginning time
+End Time
+Actual completion time
+Actual Duration
+Time spent completing task
+
+
+9.3 Prediction Data
+The system shall store:
+Field
+Description
+Prediction ID
+Unique identifier
+Category
+Task classification
+Prediction Factor
+Adjustment multiplier
+Updated Date
+Last model update
+
+
+10. Non-Functional Requirements
+10.1 Performance
+The application shall:
+Load screens efficiently.
+Maintain accurate timers.
+Process prediction calculations without noticeable delays.
+
+10.2 Maintainability
+The application shall:
+Use modular architecture.
+Separate UI, business logic, and data management.
+Support future feature additions.
+
+10.3 Scalability
+The system architecture shall support future expansion including:
+Cloud data synchronization
+Additional users
+Advanced prediction models
+Backend services
+
+10.4 Security
+The system shall:
+Protect user data.
+Prevent unauthorized access to stored information.
+Follow secure data handling practices.
+
+11. Technical Requirements
+11.1 Frontend Requirements
+The application shall use:
+Flutter framework
+Dart programming language
+
+11.2 State Management Requirements
+The application shall use a structured state management solution.
+Recommended:
+Riverpod
+Requirements:
+UI state must remain separate from business logic.
+Application state must update reactively.
+
+11.3 Database Requirements
+The MVP shall use:
+SQLite database
+Drift ORM
+The architecture shall allow future migration to:
+Supabase
+PostgreSQL
+
+12. Machine Learning Requirements
+MVP Prediction Model
+The system shall initially support:
+Statistical analysis
+Regression-based prediction
+Category-based prediction adjustments
+
+Model Inputs
+The prediction system may use:
+Estimated duration
+Actual completion history
+Task category
+Previous prediction accuracy
+
+Model Output
+The system shall produce:
+Predicted completion duration
+
+13. Testing Requirements
+13.1 Unit Testing
+The system shall test:
+Prediction calculations
+Data processing
+Task management logic
+
+13.2 Integration Testing
+The system shall test:
+Task creation and storage
+Timer completion workflow
+Prediction updates
+
+13.3 User Testing
+The system shall evaluate:
+Task creation usability
+Timer workflow
+Prediction usefulness
+
+14. Acceptance Criteria
+The MVP will be considered complete when:
+Users can create and schedule tasks.
+Users can track actual completion times.
+Task data persists between sessions.
+The system compares estimated and actual durations.
+The system generates personalized predictions.
+The application operates reliably on a mobile device.
+
